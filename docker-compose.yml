@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  db:
+    image: mariadb:10.6
+    container_name: glpi-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: louka110
+      MYSQL_DATABASE: glpidb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: zedka10
+    volumes:
+      - db_data:/var/lib/mysql
+
+  glpi:
+    image: diouxx/glpi:latest
+    container_name: glpi-app
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    environment:
+      DB_HOST: db
+      DB_USER: admin
+      DB_PASSWORD: louka110
+      DB_NAME: glpidb
+    volumes:
+      - glpi_files:/var/www/html/glpi/files
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: glpi-phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: admin
+      PMA_PASSWORD: louka110
+
+volumes:
+  db_data:
+  glpi_files:
