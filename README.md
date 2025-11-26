@@ -16,8 +16,6 @@ Ce projet contient l’infrastructure Docker permettant de déployer **GLPI**, *
 
 ## 🐳 Déploiement avec Docker
 
-### 1️⃣ Prérequis
-
 - Installer Docker et Docker Compose :  
   sudo apt update && sudo apt install -y docker.io docker-compose
   sudo systemctl enable docker --now
@@ -37,7 +35,9 @@ Ce projet contient l’infrastructure Docker permettant de déployer **GLPI**, *
 
 - Accès aux services :
   GLPI : http://IP_SERVEUR/
+  
   phpMyAdmin : http://IP_SERVEUR:8081
+  
   MariaDB : localhost:3306 depuis le serveur ou via phpMyAdmin
 
 
